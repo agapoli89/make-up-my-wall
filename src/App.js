@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+
+import HomePage from './pages/HomePage/HomePage';
+import Products from './pages/Products/Products';
+import Cart from './pages/Cart/Cart';
+
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App"> 
+    <Header />
+    {/* do przejścia między stronami chyba najlepiej użyć react-router-dom i componentu Switch */}
+      <HomePage /> 
+      <Products />
+      <Cart />
+    {/* zamknięcie Switcha */}
+    <Footer />
     </div>
   );
 }
