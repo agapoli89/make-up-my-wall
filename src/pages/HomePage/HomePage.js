@@ -3,6 +3,8 @@ import Contact from './Contact/Contact'
 import Info from './Info/Info'
 import MainProducts from './MainProducts/MainProducts'
 
+import './HomePage.scss'
+
 export default function HomePage() {
   return (
     <div>
