@@ -8,6 +8,7 @@ import './App.scss';
 
 function App() {
   return (
+
     <div className="App"> 
     <Header />
     {/* do przejścia między stronami chyba najlepiej użyć react-router-dom i componentu Switch */}
