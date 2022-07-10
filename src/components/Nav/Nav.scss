@@ -1,0 +1,26 @@
+.nav {
+    padding-left: 1rem;
+    & a {
+        text-decoration: none;
+        color: #252531;
+    }
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    &__item {
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+    }
+    &__submenu-item {
+        text-transform: initial;
+        padding-left: 1rem;
+        margin-top: 0.5rem;
+    }
+}
+
+
+
+
