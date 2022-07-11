@@ -1,13 +1,20 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive'
 
 import './Nav.scss';
 
 function Nav() {
 
+    const [isMenuVisible, changeIsMenuVisible] = useState(false);
     const [isCategoryListVisible, changeIsCategoryListVisible] = useState(false);
 
+    const dropDownMenu = () => changeIsMenuVisible(prev => !prev);
     const dropDownProductCategories = () => changeIsCategoryListVisible(prev => !prev);
+
+    const isDesktopOrLaptop = useMediaQuery({
+        query: '(min-width: 992px)'
+    })
 
     const submenu = <ul className='menu'>
         <li className='menu__submenu-item'>
@@ -29,24 +36,27 @@ function Nav() {
 
   return (
     <nav className='nav'>
-        <ul className='menu'>
-            <li className='menu__item'>
-                <Link to='promotion'>Promocje</Link>
-            </li>
-            <li className='menu__item'>
-                <Link to='products' onClick={dropDownProductCategories}>Plakaty</Link>
-                {isCategoryListVisible && submenu}
-            </li>
-            <li className='menu__item'>
-                <Link to='sets'>Zestawy</Link>
-            </li>
-            <li className='menu__item'>
-                <Link to='about-us'>O nas</Link>
-            </li>
-            <li className='menu__item'>
-                <Link to='contact'>Kontakt</Link>
-            </li>
-        </ul>
+        {!isDesktopOrLaptop && <p onClick={dropDownMenu}>|||</p>}
+        {isMenuVisible && (
+            <ul className='menu'>
+                <li className='menu__item'>
+                    <Link to='promotion'>Promocje</Link>
+                </li>
+                <li className='menu__item'>
+                    <Link to='products' onClick={dropDownProductCategories}>Plakaty</Link>
+                    {isCategoryListVisible && submenu}
+                </li>
+                <li className='menu__item'>
+                    <Link to='sets'>Zestawy</Link>
+                </li>
+                <li className='menu__item'>
+                    <Link to='about-us'>O nas</Link>
+                </li>
+                <li className='menu__item'>
+                    <Link to='contact'>Kontakt</Link>
+                </li>
+            </ul>
+        )}
     </nav>
   )
 }
