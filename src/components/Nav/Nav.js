@@ -13,7 +13,7 @@ function Nav() {
     const dropDownProductCategories = () => changeIsCategoryListVisible(prev => !prev);
 
     const isDesktopOrLaptop = useMediaQuery({
-        query: '(min-width: 992px)'
+        query: '(min-width: 768px)'
     })
 
     const submenu = <ul className='menu'>
