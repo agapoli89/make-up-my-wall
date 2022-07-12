@@ -34,29 +34,29 @@ function Nav() {
         </li>
     </ul>
 
+    const menu = <ul className='menu'>
+    <li className='menu__item'>
+        <Link to='promotion'>Promocje</Link>
+    </li>
+    <li className='menu__item'>
+        <Link to='products' onClick={dropDownProductCategories}>Plakaty</Link>
+        {isCategoryListVisible && submenu}
+    </li>
+    <li className='menu__item'>
+        <Link to='sets'>Zestawy</Link>
+    </li>
+    <li className='menu__item'>
+        <Link to='about-us'>O nas</Link>
+    </li>
+    <li className='menu__item'>
+        <Link to='contact'>Kontakt</Link>
+    </li>
+</ul>
+
   return (
     <nav className='nav'>
         {!isDesktopOrLaptop && <p onClick={dropDownMenu}>|||</p>}
-        {isMenuVisible && (
-            <ul className='menu'>
-                <li className='menu__item'>
-                    <Link to='promotion'>Promocje</Link>
-                </li>
-                <li className='menu__item'>
-                    <Link to='products' onClick={dropDownProductCategories}>Plakaty</Link>
-                    {isCategoryListVisible && submenu}
-                </li>
-                <li className='menu__item'>
-                    <Link to='sets'>Zestawy</Link>
-                </li>
-                <li className='menu__item'>
-                    <Link to='about-us'>O nas</Link>
-                </li>
-                <li className='menu__item'>
-                    <Link to='contact'>Kontakt</Link>
-                </li>
-            </ul>
-        )}
+        {isMenuVisible || isDesktopOrLaptop ? menu : null}
     </nav>
   )
 }
