@@ -1,3 +1,4 @@
+import React from 'react'
 import AboutUs from './AboutUs/AboutUs'
 import Contact from './Contact/Contact'
 import Info from './Info/Info'
