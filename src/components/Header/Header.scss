@@ -1,0 +1,12 @@
+@import'../../styles/settings.scss';
+header {
+    font-family:$font-text;
+    background:$color-light;
+}
+.logo {
+    display: inline-block;
+    padding-top:0;
+    max-height:300px;
+    max-width:100%;
+    
+    }
