@@ -7,7 +7,7 @@ import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 
-import './App.scss';
+import './styles/global.scss'
 
 function App() {
   return (
