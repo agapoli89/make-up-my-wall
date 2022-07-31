@@ -9,7 +9,7 @@ function Nav() {
 
     const [isMenuVisible, changeIsMenuVisible] = useState(false);
 
-    const dropDownMenu = () => changeIsMenuVisible(prev => !prev);
+    const toggleMenu = () => changeIsMenuVisible(prev => !prev);
 
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-width: 768px)'
@@ -19,8 +19,8 @@ function Nav() {
 
   return (
     <nav className='nav'>
-        {!isDesktopOrLaptop && <div className='nav__icons-box'><IoMenu className='nav__icon' onClick={dropDownMenu}/></div>}
-        {isMenuVisible || isDesktopOrLaptop ? <Menu /> : null}
+        {!isDesktopOrLaptop && <div className='nav__icons-box'><IoMenu className='nav__icon' onClick={toggleMenu}/></div>}
+        {isMenuVisible || isDesktopOrLaptop ? <Menu toggleMenu={toggleMenu}/> : null}
     </nav>
   )
 }

@@ -2,57 +2,57 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { useMediaQuery } from 'react-responsive';
+import { menuData } from './MenuData';
 
 import './Nav.scss';
 
-export default function Menu() {
+export default function Menu(toggleMenu) {
 
     const [isCategoryListVisible, changeIsCategoryListVisible] = useState(false);
-    const dropDownProductCategories = () => changeIsCategoryListVisible(prev => !prev);
+    const dropDownProductCategories = (e) => {
+        console.log(e);
+        if (e.target.innerText.toLowerCase() === 'plakaty') {
+            changeIsCategoryListVisible(prev => !prev);
+        } else {
+            changeIsCategoryListVisible(false);
+            !isDesktopOrLaptop && toggleMenu()
+        }
+    }
+
+    const closeMenu = () => {
+        !isDesktopOrLaptop && toggleMenu()
+    }
 
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-width: 768px)'
     })
 
-    const submenu = <ul className='menu menu__submenu'>
-        <li className='menu__submenu-item'>
-            <NavLink to='products/living-room'>Do salonu</NavLink>
-        </li>
-        <li className='menu__submenu-item'>
-            <NavLink to='products/kitchen'>Do kuchni</NavLink>
-        </li>
-        <li className='menu__submenu-item'>
-            <NavLink to='products/bedroom'>Do sypialni</NavLink>
-        </li>
-        <li className='menu__submenu-item'>
-            <NavLink to='products/room'>Do pokoju</NavLink>
-        </li>
-        <li className='menu__submenu-item'>
-            <NavLink to='products/office'>Do biura</NavLink>
-        </li>
-    </ul>
-
-    const menu = (<>
-        <ul className='menu'>
-            <li className='menu__item'>
-                <NavLink to='promotion'>Promocje</NavLink>
-            </li>
-            <li className='menu__item'>
-                <NavLink to='products' onClick={dropDownProductCategories}>Plakaty<MdKeyboardArrowDown className='menu__arrow'/></NavLink>
-                {(isCategoryListVisible && !isDesktopOrLaptop) && submenu}
-            </li>
-            <li className='menu__item'>
-                <NavLink to='sets'>Zestawy</NavLink>
-            </li>
-            <li className='menu__item'>
-                <NavLink to='about-us'>O nas</NavLink>
-            </li>
-            <li className='menu__item'>
-                <NavLink to='contact'>Kontakt</NavLink>
-            </li>
+    const submenu = (
+        <ul className='menu menu__submenu'>
+            {menuData.submenuItems.map(submenuItem => (
+                <li className='menu__submenu-item' key={submenuItem.id}>
+                    <NavLink to={submenuItem.url} onClick={closeMenu}>{submenuItem.description}</NavLink>
+                </li>
+            ))}
         </ul>
-        {(isCategoryListVisible && isDesktopOrLaptop) && submenu}
-    </>)
+    )
+
+    const menu = (
+        <>
+            <ul className='menu'>
+                {menuData.menuItems.map(menuItem => (
+                    <li className='menu__item' key={menuItem.id} onClick={(e) => dropDownProductCategories(e)}>
+                        <NavLink to={menuItem.url}>
+                            {menuItem.description}
+                            {menuItem.id === 2 ? <MdKeyboardArrowDown className='menu__arrow'/> : null}
+                        </NavLink>
+                        {(isCategoryListVisible && !isDesktopOrLaptop && menuItem.id === 2) && submenu}
+                    </li>
+                ))}
+            </ul>
+            {(isCategoryListVisible && isDesktopOrLaptop) && submenu}
+        </>
+    )
   
   return menu
 }
