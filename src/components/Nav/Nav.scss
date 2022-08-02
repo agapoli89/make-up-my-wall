@@ -1,30 +1,90 @@
 @import '../../styles/mediaQueries.scss';
+@import '../../styles/settings.scss';
 
 .nav {
     padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
     & a {
         text-decoration: none;
         color: #252531;
     }
+    &__icons-box {
+        width: 100%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    &__icon {
+        height: 30px;
+        width: 30px;
+    } 
 }
 
 .menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    &__submenu {
+        @include tablet {
+            margin: 1rem;
+            padding: 1rem 4rem 1rem 4rem;
+            border: 1px solid $color-border;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
     &__item {
         text-transform: capitalize;
         margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+        font-weight: 600;
+        border-bottom: 1px solid $color-border;
         @include tablet {
+            display: inline;
             text-transform: uppercase;
+            margin: 0.5rem;
+            border-bottom: 0;
         }
     }
     &__submenu-item {
         text-transform: initial;
         padding-left: 1rem;
         margin-top: 0.5rem;
+        font-size: 0.9em;
+        @include tablet {
+            display: inline;
+            margin-top: 0;
+            padding-left: 0;
+            font-weight: 600;
+            position: relative;
+            &::after {
+                content: "";
+                    background: $color-higlighted;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    height: 10%;
+                    width: 40%;
+            }
+            }
+    }
+    &__arrow {
+        vertical-align: middle;
+    }
+    @include tablet {
+        text-align: center;
     }
 }
+
+nav a.active {
+    color: $color-higlighted;
+}
+
+nav a:hover {
+    color: $color-higlighted;
+}
+
+
 
 
 
